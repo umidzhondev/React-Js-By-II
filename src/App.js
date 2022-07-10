@@ -1,15 +1,17 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Product from "./components/product";
+import Form from "./components/Form";
 
 const initialState = 1;
 function App() {
-  const [show,setShow] = useState(false);
+  const [state, setState] = useState(true);
 
   return (
     <div>
-      {show && <Product/>}
-      <button onClick={()=>setShow(prev=>!prev)}>Toggle</button>
+      <Form/>
+      {state && <Product />}
+      <button onClick={() => setState((prev) => !prev)}>Toggle</button>
     </div>
   );
 }

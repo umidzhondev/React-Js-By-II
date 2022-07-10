@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { useForm } from "../customHooks/useForm";
 
@@ -6,18 +6,25 @@ const initialState = {
   ism: "",
   parol: "",
 };
-export const Form = () => {
+const Form = () => {
   const [value, handleChange] = useForm(initialState);
+
+  const inputRef = useRef(() => console.log("Hello World"));
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    console.log(value);
+    inputRef.current();
+    // if(!value.parol){
+    //   console.log(inputRef.current.focus());
+    // }else{
+    //   console.log(value);
+    // }
   };
 
-  
   return (
     <form onSubmit={SubmitHandler}>
       <input
+        // ref={inputRef}
         type="text"
         onChange={handleChange}
         placeholder="ism"
@@ -25,6 +32,7 @@ export const Form = () => {
         name="ism"
       />
       <input
+        // ref={inputRef}
         type="password"
         placeholder="password"
         value={value.parol}
@@ -35,3 +43,5 @@ export const Form = () => {
     </form>
   );
 };
+
+export default Form;
